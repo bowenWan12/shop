@@ -1,4 +1,4 @@
-package com.bww.shop.utils.provider;
+package com.bww.shop.provider;
 
 import com.bww.shop.domain.Goods;
 import org.apache.ibatis.jdbc.SQL;

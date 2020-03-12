@@ -1,7 +1,7 @@
 package com.bww.shop.mapper;
 
 import com.bww.shop.domain.Goods;
-import com.bww.shop.utils.provider.GoodsProvider;
+import com.bww.shop.provider.GoodsProvider;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

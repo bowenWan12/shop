@@ -2,7 +2,6 @@ package com.bww.shop.utils;
 
 import com.bww.shop.domain.User;
 import io.jsonwebtoken.*;
-import org.springframework.util.StringUtils;
 
 import java.util.Date;
 

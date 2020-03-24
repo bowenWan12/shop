@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 
 public class Goods implements Serializable {
 
+  private static final long serialVersionUID = -8902969645837753131L;
   private Integer id;
   private String name;
   private String imagePath;

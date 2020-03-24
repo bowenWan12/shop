@@ -1,6 +1,7 @@
 package com.bww.shop.controller;
 
 import com.bww.shop.config.ShopConfig;
+import com.bww.shop.domain.JsonData;
 import com.bww.shop.mapper.GoodsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +25,8 @@ public class TestController {
     private GoodsMapper goodsMapper;
 
     @RequestMapping("db_qry")
-    public Object qryAllGoods(){
+    public JsonData qryAllGoods(){
 
-        return goodsMapper.findAll();
+        return JsonData.buildSuccess(goodsMapper.findAll());
     }
 }

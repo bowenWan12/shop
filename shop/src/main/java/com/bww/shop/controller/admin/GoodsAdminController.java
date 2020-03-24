@@ -2,6 +2,8 @@ package com.bww.shop.controller.admin;
 
 import com.bww.shop.domain.Goods;
 import com.bww.shop.service.GoodsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin/api/v1/goods")
 public class GoodsAdminController {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private Logger dataloger = LoggerFactory.getLogger("dataLogger");
     @Autowired
     private GoodsService goodsService;
 
@@ -52,7 +57,7 @@ public class GoodsAdminController {
      */
     @PostMapping("save")
     public int save(@RequestBody Goods goods){
-
+        dataloger.info("modul=shop_goods`api=add id={}", goods.getId());
         int save = goodsService.save(goods);
         System.out.print("=========="+goods.getId()+"===========");
         return save;

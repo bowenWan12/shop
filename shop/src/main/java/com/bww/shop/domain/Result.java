@@ -10,9 +10,7 @@ import java.util.Map;
  *
  */
 public class Result implements Serializable {
-
-    private static final long serialVersionUID = -4762928619495260423L;
-
+    private static final long serialVersionUID = 7891987256878564322L;
     private Integer code;
 
     private String msg;
@@ -89,6 +87,4 @@ public class Result implements Serializable {
     public void setData(Object data) {
         this.data = data;
     }
-
-
 }

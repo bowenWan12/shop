@@ -1,6 +1,6 @@
 package com.bww.shop.common;
 
-import com.bww.shop.domain.JsonData;
+import com.bww.shop.domain.Result;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,14 +14,12 @@ public class ExceptionHander {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public JsonData Hander(Exception e) {
-
-
+    public Result Hander(Exception e) {
         if (e instanceof BaseException) {
             BaseException baseException = (BaseException) e;
-            return JsonData.buildError(baseException.getErrMsg(),baseException.getErrCode());
+            return Result.error(ResultCode.ERROR, baseException.getErrMsg());
         } else {
-            return JsonData.buildError("全局异常，未知错误");
+            return Result.error(ResultCode.ERROR);
         }
 
     }

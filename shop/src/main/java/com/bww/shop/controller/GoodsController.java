@@ -24,6 +24,7 @@ public class GoodsController {
    @Autowired
    private GoodsService goodsService;
 
+
     /**
      * 分页接口
      * @param page 当前第几页， 默认是第一页

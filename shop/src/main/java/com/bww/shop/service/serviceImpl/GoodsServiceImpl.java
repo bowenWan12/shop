@@ -25,6 +25,11 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public Goods findByMark(String mark) {
+        return goodsMapper.findByMark(mark);
+    }
+
+    @Override
     public int updateGoodNameById(Goods goods) {
         return goodsMapper.updateGoodsNameById(goods);
     }

@@ -12,6 +12,8 @@ public interface GoodsService {
 
     Goods findById(int id);
 
+    Goods findByMark(String mark);
+
     int updateGoodNameById(Goods goods);
 
     int save(Goods goods);

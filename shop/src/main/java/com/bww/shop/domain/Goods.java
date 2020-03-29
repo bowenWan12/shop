@@ -8,6 +8,7 @@ public class Goods implements Serializable {
 
   private static final long serialVersionUID = -8902969645837753131L;
   private Integer id;
+  private String mark;
   private String name;
   private String imagePath;
   private String description;
@@ -88,4 +89,11 @@ public class Goods implements Serializable {
     this.createTime = createTime;
   }
 
+  public String getMark() {
+    return mark;
+  }
+
+  public void setMark(String mark) {
+    this.mark = mark;
+  }
 }

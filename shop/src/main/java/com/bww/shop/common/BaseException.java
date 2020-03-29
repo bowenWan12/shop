@@ -27,4 +27,9 @@ public class BaseException extends RuntimeException{
         this.errMsg = errMsg;
     }
 
+    public BaseException(ResultCode resultCode) {
+        this.errCode = resultCode.code();
+        this.errMsg = resultCode.message();
+    }
+
 }

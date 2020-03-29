@@ -1,6 +1,7 @@
 package com.bww.shop.intercepter;
 
-import com.bww.shop.domain.JsonData;
+import com.bww.shop.common.ResultCode;
+import com.bww.shop.domain.Result;
 import com.bww.shop.utils.JWTUtils;
 import com.google.gson.Gson;
 import io.jsonwebtoken.Claims;
@@ -42,7 +43,7 @@ public class LoginIntercepter implements HandlerInterceptor {
             }
 
         }
-        senfJosnMassage(response, JsonData.buildError("请登录"));
+        senfJosnMassage(response, Result.error(ResultCode.USER_NOT_LOGGED_IN,"请登录"));
         return false;
     }
 

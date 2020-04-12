@@ -21,14 +21,17 @@ public interface UserMapper {
      * @return
      */
     @Select("SELECT * FROM user WHERE openid = #{openid}")
-    User findByOpenId(@Param("openid") String openid);
+    User findByOpenId(String openid);
 
 //    @UpdateProvider(type = GoodsProvider.class, method = "updateGoods")
 //    int updateGoodsNameById(User user);
 
-    @Insert("INSERT INTO `user` ( `openid`, `name`, `head_img`', `sex`, `city`, 'phone', 'user_nm', 'pass_wd', 'pass_wd', 'salt', 'type', `create_time`)" +
+    @Insert("INSERT INTO user (openid, name, head_img, sex, city, phone, user_nm, pass_wd, salt, type)" +
             "VALUES" +
-            "(#{openid},`#{name}, #{head_img}, #{sex}, #{city}, #{phone}, #{user_nm}, #{pass_wd}, #{pass_wd}, #{salt}, {type}, #{create_time});")
+            "(#{openid}, #{name}, #{headImg}, #{sex}, #{city}, #{phone}, #{userNm}, #{passWd}, #{salt}, #{type});")
     @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
     int save(User user);
+
+    @Update("update user set address_info = #{addressInfo} where openid = #{openid}")
+    int updateAddressInfoByOpenid(String addressInfo, String openid);
 }

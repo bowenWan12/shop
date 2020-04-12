@@ -1,11 +1,20 @@
 package com.bww.shop.service;
 
-import com.bww.shop.domain.Order;
-import com.bww.shop.dto.OrderDto;
+import com.bww.shop.domain.Flow;
+import com.bww.shop.domain.GoodsOrder;
+import org.springframework.core.annotation.Order;
+
+import java.util.List;
 
 /**
  * 订单接口
  */
 public interface OrderService {
-    Order save(OrderDto orderDto);
+    int save(GoodsOrder order, List<Flow> flowList);
+
+    List<GoodsOrder> selectByPage(String openid);
+
+    GoodsOrder selectByOrderId(String orderId);
+
+    int update(GoodsOrder goodsOrder);
 }

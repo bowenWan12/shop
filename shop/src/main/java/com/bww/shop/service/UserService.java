@@ -10,4 +10,6 @@ public interface UserService {
 
     User findByOpenId(String openid);
 
+    int updateUserAddressInfoByOpenid(String addressInfo, String openid);
+
 }

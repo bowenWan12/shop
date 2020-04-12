@@ -1,27 +1,23 @@
 package com.bww.shop.domain;
 
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Order implements Serializable {
+public class GoodsOrder {
 
-
-    private static final long serialVersionUID = 1418946854986274367L;
-    private Integer id;
+  private Integer id;
   private String openid;
   private String nickName;
   private String headImg;
   private String orderId;
-  private String flowId;
   private String transDate;
-  private String goodsMark;
-  private String goodsInfo;
+  private String addressInfo;
+  private String postscript;
   private String state;
   private BigDecimal totalFee;
   private String del;
-  private java.util.Date updateTime;
   private java.util.Date createTime;
+  private java.util.Date updateTime;
 
 
   public Integer getId() {
@@ -69,15 +65,6 @@ public class Order implements Serializable {
   }
 
 
-  public String getFlowId() {
-    return flowId;
-  }
-
-  public void setFlowId(String flowId) {
-    this.flowId = flowId;
-  }
-
-
   public String getTransDate() {
     return transDate;
   }
@@ -87,12 +74,21 @@ public class Order implements Serializable {
   }
 
 
-  public String getGoodsInfo() {
-    return goodsInfo;
+  public String getAddressInfo() {
+    return addressInfo;
   }
 
-  public void setGoodsInfo(String goodsInfo) {
-    this.goodsInfo = goodsInfo;
+  public void setAddressInfo(String addressInfo) {
+    this.addressInfo = addressInfo;
+  }
+
+
+  public String getPostscript() {
+    return postscript;
+  }
+
+  public void setPostscript(String postscript) {
+    this.postscript = postscript;
   }
 
 
@@ -123,15 +119,6 @@ public class Order implements Serializable {
   }
 
 
-  public java.util.Date getUpdateTime() {
-    return updateTime;
-  }
-
-  public void setUpdateTime(java.util.Date updateTime) {
-    this.updateTime = updateTime;
-  }
-
-
   public java.util.Date getCreateTime() {
     return createTime;
   }
@@ -140,11 +127,13 @@ public class Order implements Serializable {
     this.createTime = createTime;
   }
 
-  public String getGoodsMark() {
-    return goodsMark;
+
+  public java.util.Date getUpdateTime() {
+    return updateTime;
   }
 
-  public void setGoodsMark(String goodsMark) {
-    this.goodsMark = goodsMark;
+  public void setUpdateTime(java.util.Date updateTime) {
+    this.updateTime = updateTime;
   }
+
 }

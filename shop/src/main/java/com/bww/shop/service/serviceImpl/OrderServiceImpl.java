@@ -1,17 +1,52 @@
 package com.bww.shop.service.serviceImpl;
 
-import com.bww.shop.domain.Order;
-import com.bww.shop.dto.OrderDto;
+import com.bww.shop.domain.Flow;
+import com.bww.shop.domain.GoodsOrder;
+import com.bww.shop.mapper.FlowMapper;
+import com.bww.shop.mapper.GoodsOrderMapper;
 import com.bww.shop.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
+    @Autowired
+    private GoodsOrderMapper orderMapper;
+    @Autowired
+    private FlowMapper flowMapper;
 
     @Override
-    public Order save(OrderDto orderDto) {
+    @Transactional(propagation = Propagation.REQUIRED)
+    public int save(GoodsOrder order, List<Flow> flowList) {
+        int result = orderMapper.insert(order);
 
-        return null;
+        for (Flow flow : flowList) {
+            int saveResult = flowMapper.save(flow);
+            result+=saveResult;
+        }
+
+        return result;
     }
+
+    @Override
+    public List<GoodsOrder> selectByPage(String openid) {
+
+        return orderMapper.findMyOrderList(openid);
+    }
+
+    @Override
+    public GoodsOrder selectByOrderId(String orderId) {
+        return orderMapper.findByOrderId(orderId);
+    }
+
+    @Override
+    public int update(GoodsOrder goodsOrder) {
+        return orderMapper.updateOrderByOrderId(goodsOrder);
+    }
+
 }

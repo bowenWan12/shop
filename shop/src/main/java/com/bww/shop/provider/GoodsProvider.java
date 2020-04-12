@@ -24,6 +24,12 @@ public class GoodsProvider {
             if(goods.getName() != null){
                 SET("name=#{name}");
             }
+            if(goods.getDescription() != null){
+                SET("description=#{description}");
+            }
+            if(goods.getState() != null){
+                SET("state=#{state}");
+            }
             WHERE("id=#{id}");
         }}.toString();
     }

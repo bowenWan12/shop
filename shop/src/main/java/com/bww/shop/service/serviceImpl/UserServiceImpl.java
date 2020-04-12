@@ -1,5 +1,6 @@
 package com.bww.shop.service.serviceImpl;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.bww.shop.domain.User;
 import com.bww.shop.mapper.UserMapper;
 import com.bww.shop.service.UserService;
@@ -13,7 +14,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int saveWechatUser(User user) {
-
+        System.out.println(user);
         return userMapper.save(user);
     }
 
@@ -24,6 +25,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByOpenId(String openid) {
-        return userMapper.findByOpenId(openid);
+        if (userMapper.findByOpenId(openid) == null) {
+            return new User();
+        } else {
+            return userMapper.findByOpenId(openid);
+        }
+    }
+
+    @Override
+    public int updateUserAddressInfoByOpenid(String addressInfo, String openid) {
+        return userMapper.updateAddressInfoByOpenid(addressInfo, openid);
     }
 }

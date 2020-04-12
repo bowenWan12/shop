@@ -16,5 +16,8 @@ public interface GoodsService {
 
     int updateGoodNameById(Goods goods);
 
+    int updateGoodNameByMark(Goods goods);
+
     int save(Goods goods);
+
 }

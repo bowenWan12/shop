@@ -38,6 +38,7 @@ public class WechatController {
     private UserService userService;
 
     @PostMapping("/user/login")
+    @ResponseBody
     public Result authCode2Session(@RequestBody User user) {
         //对传入对user进行判断
         if (user.getSalt() == null || user.getSalt() == "") {
@@ -97,6 +98,7 @@ public class WechatController {
 
         rs.simple().put(Base.TOKEN, token);
         rs.setResultCode(ResultCode.SUCCESS);
+        System.out.println("-----------------------"+rs.getCode());
         return rs;
     }
 

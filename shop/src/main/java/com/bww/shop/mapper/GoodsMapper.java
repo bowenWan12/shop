@@ -20,11 +20,14 @@ public interface GoodsMapper {
     @Select("SELECT * FROM goods WHERE mark = #{mark}")
     Goods findByMark(String mark);
 
-    @UpdateProvider(type = GoodsProvider.class, method = "updateGoods")
+    @UpdateProvider(type = GoodsProvider.class, method = "updateGoodsById")
     int updateGoodsNameById(Goods goods);
 
-    @Insert("INSERT INTO goods (mark, name, image_path, description, price, state, num) VALUES" +
-            "(#{mark}, #{name}, #{imagePath}, #{description}, #{price}, #{state}, #{num} )")
+    @UpdateProvider(type = GoodsProvider.class, method = "updateGoodsByMark")
+    int updateGoodsNameByMark(Goods goods);
+
+    @Insert("INSERT INTO goods (mark, image_path, state) VALUES" +
+            "(#{mark}, #{imagePath}, #{state})")
     @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
     int save(Goods goods);
 }

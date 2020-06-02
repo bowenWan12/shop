@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -48,6 +50,24 @@ public class GoodsAdminController extends GoodsController {
         dataloger.info("modul=shop_goods`api=update id={}", goods.getId());
         Result rs = new Result();
         int update = goodsService.updateGoodNameById(goods);
+        if (update == 1){
+            rs.setResultCode(ResultCode.SUCCESS);
+        } else {
+            rs.setResultCode(ResultCode.INTERFACE_INNER_INVOKE_ERROR);
+        }
+        return rs;
+    }
+
+    /**
+     * 根据mark更新商品
+     *  不更新图片路径
+     * @return
+     */
+    @PutMapping("update_by_mark")
+    public Result updateByMark(@RequestBody Goods goods){
+        dataloger.info("modul=shop_goods`api=update mark={}", goods.getMark());
+        Result rs = new Result();
+        int update = goodsService.updateGoodNameByMark(goods);
         if (update == 1){
             rs.setResultCode(ResultCode.SUCCESS);
         } else {
@@ -106,12 +126,13 @@ public class GoodsAdminController extends GoodsController {
     }
 
     /**
-     * 添加商品
-     * @param goods
+     * 添加商品图片
+     * @param request
+     * @param image
      * @return
      */
-    @PostMapping("/save")
-    public Result upload(HttpServletRequest request, MultipartFile image, Goods goods) {
+    @PostMapping("/saveImg")
+    public Result upload(HttpServletRequest request, MultipartFile image) {
 
         Result rs = new Result();
 
@@ -138,12 +159,19 @@ public class GoodsAdminController extends GoodsController {
 
             url.append("/").append(imgName);
 
+            Goods goods = new Goods();
             goods.setMark(GenerateGoodsMarkStr.goodsMark());
             goods.setState(GoodsEnums.GoodssState._0.getCode());
             goods.setImagePath(url.toString());
 
             goodsService.save(goods);
 
+            Map<String,String> goodsMap= new HashMap<>();
+            goodsMap.put("id", String.valueOf(goods.getId()));
+            goodsMap.put("mark", goods.getMark());
+            //TODO
+            goodsMap.put("imagePath", "http://bwwinds.natapp1.cc"+goods.getImagePath());
+            rs.setData(goodsMap);
             rs.setResultCode(ResultCode.SUCCESS);
 
         } catch (IOException e) {
@@ -153,6 +181,7 @@ public class GoodsAdminController extends GoodsController {
 
         return rs;
     }
+
 
     public static class GenerateGoodsMarkStr{
         private static final transient AtomicInteger order_index = new AtomicInteger(0);

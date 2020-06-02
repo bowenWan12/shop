@@ -11,6 +11,9 @@ import com.bww.shop.utils.DateUtils;
 import com.bww.shop.utils.IpUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.annotations.JsonAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +44,7 @@ public class OrderController {
     private UserService userService;
     @Autowired
     private FlowService flowService;
+    private static final Gson gson = new Gson();
 
     @PostMapping("/add")
     public Result saveOrder(@RequestParam(value = "goodsMarks", required = true) @RequestBody List<String> goodsMarks,
@@ -101,6 +105,7 @@ public class OrderController {
                 flow.setOrderId(order.getOrderId());
                 flow.setTransDate(DateUtils.formatDateTo14Str(new Date()));
                 flow.setGoodsMark(goods.getMark());
+                flow.setGoodsName(goods.getName());
                 flow.setAmountFee(goods.getPrice());
                 flow.setCreateTime(new Date());
 
@@ -130,7 +135,23 @@ public class OrderController {
     public Result detail(@RequestParam(value = "orderId", required = true) String orderId) {
         Result rs = new Result();
         List<Flow> flowList = flowService.findByOrderId(orderId);
-        rs.setData(flowList);
+        Map<String, List<Flow>> flowMap = new HashMap<>();
+        for (Flow flow:flowList) {
+            if (!flowMap.containsKey(flow.getGoodsMark())) {
+                List<Flow> f = new ArrayList<>();
+                f.add(flow);
+                flowMap.put(flow.getGoodsMark(), f);
+            } else {
+                List<Flow> flows = flowMap.get(flow.getGoodsMark());
+                flows.add(flow);
+            }
+        }
+
+
+
+
+        rs.setData(flowMap);
+        rs.setCode(Result.success().getCode());
         return rs;
     }
 

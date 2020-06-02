@@ -14,6 +14,10 @@ public interface OrderService {
 
     List<GoodsOrder> selectByPage(String openid);
 
+    List<GoodsOrder> adminSelectByPage();
+
+    List<GoodsOrder> adminSelectByPage(String openid);
+
     GoodsOrder selectByOrderId(String orderId);
 
     int update(GoodsOrder goodsOrder);

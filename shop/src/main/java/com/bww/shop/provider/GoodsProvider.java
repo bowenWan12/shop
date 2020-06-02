@@ -14,7 +14,7 @@ public class GoodsProvider {
      * @param goods
      * @return
      */
-    public String updateGoods(final Goods goods){
+    public String updateGoodsById(final Goods goods){
         return new SQL(){{
             UPDATE("goods");
             //条件写法.
@@ -31,6 +31,26 @@ public class GoodsProvider {
                 SET("state=#{state}");
             }
             WHERE("id=#{id}");
+        }}.toString();
+    }
+
+    public String updateGoodsByMark(final Goods goods){
+        return new SQL(){{
+            UPDATE("goods");
+            //条件写法.
+            if(goods.getPrice() != null){
+                SET("price=#{price}");
+            }
+            if(goods.getName() != null){
+                SET("name=#{name}");
+            }
+            if(goods.getDescription() != null){
+                SET("description=#{description}");
+            }
+            if(goods.getNum() != null){
+                SET("num=#{num}");
+            }
+            WHERE("mark=#{mark}");
         }}.toString();
     }
 }

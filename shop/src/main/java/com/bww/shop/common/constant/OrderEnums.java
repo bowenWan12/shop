@@ -6,7 +6,8 @@ public class OrderEnums {
         _1("1", "待确认"),
         _2("2", "待发货"),
         _3("3", "已发货"),
-        _4("4", "已完成");
+        _4("4", "已完成"),
+        _5("5", "拒绝");
         private String code;
         private String desc;
 

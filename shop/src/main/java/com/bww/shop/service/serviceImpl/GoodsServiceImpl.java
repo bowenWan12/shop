@@ -36,7 +36,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public int updateGoodNameByMark(Goods goods) {
-        return goodsMapper.updateGoodsNameById(goods);
+        return goodsMapper.updateGoodsNameByMark(goods);
     }
 
     @Override

@@ -18,8 +18,8 @@ public interface FlowMapper {
     @Select("SELECT * FROM flow WHERE order_id = #{orderId}")
     List<Flow> findByOrderId(String orderId);
 
-    @Insert("INSERT INTO flow (openid, order_id, flow_id, trans_date, goods_mark, amount_fee, create_time) VALUES" +
-            "(#{openid}, #{orderId}, #{flowId}, #{transDate}, #{goodsMark}, #{amountFee}, #{createTime} )")
+    @Insert("INSERT INTO flow (openid, order_id, flow_id, trans_date, goods_mark, goods_name, amount_fee, create_time) VALUES" +
+            "(#{openid}, #{orderId}, #{flowId}, #{transDate}, #{goodsMark}, #{goodsName}, #{amountFee}, #{createTime} )")
     @Options(useGeneratedKeys=true, keyProperty="id", keyColumn="id")
     int save(Flow flow);
 }

@@ -31,6 +31,9 @@ public interface GoodsOrderMapper {
     @Select("select * from goodsOrder where openid=#{openid}")
     List<GoodsOrder> findMyOrderList(String openid);
 
+    @Select("select * from goodsOrder")
+    List<GoodsOrder> adminFindMyOrderList();
+
     @Update("update goodsOrder set state=#{state} where order_id = #{orderId}")
     int updateOrderByOrderId(GoodsOrder order);
 }

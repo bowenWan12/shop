@@ -89,7 +89,7 @@ public class GoodsController {
 
        rs.setResultCode(ResultCode.SUCCESS);
        rs.setData(goods);
-       return Result.success();
+       return rs;
    }
 
 }

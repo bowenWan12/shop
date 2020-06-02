@@ -11,6 +11,7 @@ public class Flow {
   private String flowId;
   private String transDate;
   private String goodsMark;
+  private String goodsName;
   private BigDecimal amountFee;
   private java.util.Date createTime;
 
@@ -68,6 +69,13 @@ public class Flow {
     this.goodsMark = goodsMark;
   }
 
+  public String getGoodsName() {
+    return goodsName;
+  }
+
+  public void setGoodsName(String goodsName) {
+    this.goodsName = goodsName;
+  }
 
   public BigDecimal getAmountFee() {
     return amountFee;

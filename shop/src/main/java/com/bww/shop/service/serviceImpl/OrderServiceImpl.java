@@ -40,6 +40,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<GoodsOrder> adminSelectByPage() {
+        return orderMapper.adminFindMyOrderList();
+    }
+
+    @Override
+    public List<GoodsOrder> adminSelectByPage(String openid) {
+        return orderMapper.adminFindMyOrderList();
+    }
+
+    @Override
     public GoodsOrder selectByOrderId(String orderId) {
         return orderMapper.findByOrderId(orderId);
     }

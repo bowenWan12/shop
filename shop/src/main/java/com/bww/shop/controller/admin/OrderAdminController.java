@@ -29,7 +29,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/admin/api/v1/order")
-//@RequestMapping("/api/v1/order")
 public class OrderAdminController extends OrderController {
 
     private Logger dataloger = LoggerFactory.getLogger("dataLogger");
@@ -72,10 +71,11 @@ public class OrderAdminController extends OrderController {
 
     //管理员更新某个订单==拒绝，修改订单状态
     @PostMapping("/update")
-    public Result updateOrderSatet(String orderId, String state) {
+    public Result updateOrderSatet(@RequestParam String orderId, @RequestParam String state) {
 
         Result rs = new Result();
 
+        System.out.println("=====" + orderId+"==="+state);
         GoodsOrder goodsOrder = orderService.selectByOrderId(orderId);
         if (goodsOrder == null || StringUtils.isBlank(goodsOrder.getOrderId())) {
             rs.setResultCode(ResultCode.RESULE_DATA_NONE);

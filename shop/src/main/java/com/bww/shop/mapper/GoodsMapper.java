@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface GoodsMapper {
 
-    @Select("select * from goods")
+    @Select("select * from goods where state = '0'")
     List<Goods> findAll();
 
     @Select("SELECT * FROM goods WHERE id = #{id}")

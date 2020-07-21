@@ -23,6 +23,9 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE openid = #{openid}")
     User findByOpenId(String openid);
 
+    @Select("SELECT * FROM user WHERE user_nm = #{userNm}")
+    User findByUserNm(String userNm);
+
 //    @UpdateProvider(type = GoodsProvider.class, method = "updateGoods")
 //    int updateGoodsNameById(User user);
 

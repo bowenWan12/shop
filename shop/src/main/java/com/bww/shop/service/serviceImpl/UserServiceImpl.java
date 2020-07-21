@@ -1,6 +1,5 @@
 package com.bww.shop.service.serviceImpl;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.bww.shop.domain.User;
 import com.bww.shop.mapper.UserMapper;
 import com.bww.shop.service.UserService;
@@ -35,5 +34,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateUserAddressInfoByOpenid(String addressInfo, String openid) {
         return userMapper.updateAddressInfoByOpenid(addressInfo, openid);
+    }
+
+    @Override
+    public User findByUserNm(String userNm) {
+        return userMapper.findByUserNm(userNm);
     }
 }

@@ -17,8 +17,8 @@ public interface GoodsOrderMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     int insert(GoodsOrder order);
 
-    @Select("select * from goodsOrder where order_id = #{orderId}")
-    GoodsOrder findByOrderId(@Param("orderId") String orderId);
+    @Select("select * from goodsOrder where order_id = #{order_id}")
+    GoodsOrder findByOrderId(@Param("order_id") String orderId);
 
 
     @Select("select * from goodsOrder where flow_id = #{flow_id} and del = 0")
